@@ -6,13 +6,13 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class MQTTSample {
   public static void main(String[] args) {
-    String topic        = "CloudMQTT";
+    String topic        = "my/mqtt/topic";
     String content      = "Hello CloudMQTT";
     int qos             = 1;
     String broker       = "tcp://m12.cloudmqtt.com:10341";
 
     //MQTT client id to use for the device. "" will generate a client id automatically
-    String clientId     = "ClientId";
+    String clientId     = "";
 
     MemoryPersistence persistence = new MemoryPersistence();
     try {
@@ -35,8 +35,10 @@ public class MQTTSample {
 
       MqttConnectOptions connOpts = new MqttConnectOptions();
       connOpts.setCleanSession(true);
-      connOpts.setUserName("szbauxis");
-      connOpts.setPassword(new char[]{'d', 'f', 'q', 'o', 'H', 'x', 'P', 'D', '3', 'S', 'z', 'U'});
+     // connOpts.setUserName("szbauxis");
+      //connOpts.setPassword(new char[]{'d', 'f', 'q', 'o', 'H', 'x', 'P', 'D', '3', 'S', 'z', 'U'});
+      connOpts.setUserName("meindert");
+      connOpts.setPassword(new char[]{'j', 'a', 't', 'k', 'l', 'e', 'd', '1', '4', '7'});
       mqttClient.connect(connOpts);
       MqttMessage message = new MqttMessage(content.getBytes());
       message.setQos(qos); 
@@ -51,7 +53,7 @@ public class MQTTSample {
       System.out.println("loc "+me.getLocalizedMessage());
       System.out.println("cause "+me.getCause());
       System.out.println("excep "+me);
-      me.printStackTrace();
+
     }
   }
 }
